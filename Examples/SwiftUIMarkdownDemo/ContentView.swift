@@ -24,5 +24,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    VStack {
+        ContentView()
+    }
 }
