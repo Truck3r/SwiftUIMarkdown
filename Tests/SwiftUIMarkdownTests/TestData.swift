@@ -9,7 +9,7 @@
 // Copied from here: https://gist.github.com/allysonsilva/85fff14a22bbdf55485be947566cc09e
 import SwiftUIMarkdown
 
-// swiftlint:disable file_length trailing_whitespace
+// swiftlint:disable file_length trailing_whitespace no_newline_before_trailing_closure
 public extension MarkdownView {
     static let test =
         """
@@ -1252,4 +1252,4 @@ public extension MarkdownView {
         """
 }
 
-// swiftlint:disable file_length trailing_whitespace
+// swiftlint:enable file_length trailing_whitespace no_newline_before_trailing_closure

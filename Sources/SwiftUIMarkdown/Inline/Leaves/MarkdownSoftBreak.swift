@@ -16,7 +16,6 @@ import Markdown
 /// representation of such breaks.
 @MainActor
 extension Markdown.SoftBreak: MarkdownInline {
-    
     /// A SwiftUI `Text` view representing the soft break.
     ///
     /// Soft breaks are rendered as a single space character, allowing text to flow

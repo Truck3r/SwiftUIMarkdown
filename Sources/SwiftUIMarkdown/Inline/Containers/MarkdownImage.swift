@@ -30,7 +30,6 @@ import Markdown
 ///
 @MainActor
 extension Markdown.Image: MarkdownInline, MarkdownInlineContainer {
-    
     /// The SwiftUI `Text` view representing this Markdown image.
     ///
     /// Returns a `Text` view containing the rendered image, or an unsupported
@@ -72,7 +71,6 @@ extension Markdown.Image: MarkdownInline, MarkdownInlineContainer {
         var data: Data?
         if source.starts(with: "http") {
             // support for http/https referenced image
-            // TODO: fetching image synchronuously on main thread is not good - needs to be fixed.
             if let url = URL(string: source) {
                 data = try? Data(contentsOf: url)
             }

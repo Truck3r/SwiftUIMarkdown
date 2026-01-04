@@ -1,6 +1,3 @@
-excluded:
-#  - "Dependencies/Tests/**/*"
-  
 disabled_rules: # rule identifiers to exclude from running
   - nesting
 

@@ -39,7 +39,7 @@ import SwiftUI
 public struct MarkdownAccessibility: Sendable {
     /// A closure that returns a string to announce at the beginning of a list.
     public let listBegin: @Sendable () -> String
-    
+
     /// A closure that returns a string describing an item's position within a list.
     ///
     /// - Parameters:
@@ -47,7 +47,7 @@ public struct MarkdownAccessibility: Sendable {
     ///   - total: The total number of items in the list.
     /// - Returns: A localized string describing the item's position.
     public let listCounter: @Sendable (Int, Int) -> String
-    
+
     /// A closure that returns a string to announce at the end of a list.
     public let listEnd: @Sendable () -> String
 

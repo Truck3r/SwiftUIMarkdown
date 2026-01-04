@@ -11,7 +11,6 @@ import Markdown
 
 @MainActor
 extension Markdown.Text: MarkdownInline {
-    
     /// A SwiftUI `Text` view representing the plain text content of this Markdown text element.
     ///
     /// This property converts the Markdown `Text` node's string content into a SwiftUI `Text` view,

@@ -65,6 +65,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10CDEF112EFDDEA4004F2FA4 /* Build configuration list for PBXNativeTarget "SwiftUIMarkdownDemo" */;
 			buildPhases = (
+				108AA22F2F0B11B700BED56D /* ShellScript */,
 				10CDEF022EFDDEA1004F2FA4 /* Sources */,
 				10CDEF032EFDDEA1004F2FA4 /* Frameworks */,
 				10CDEF042EFDDEA1004F2FA4 /* Resources */,
@@ -130,6 +131,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		108AA22F2F0B11B700BED56D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/.swiftlint.yml",
+				"$(SRCROOT)/**/*.swift",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${DERIVED_FILE_DIR}/swiftlint.timestamp",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\necho \"Linting because build dir: ${BUILD_DIR}\"  \nexport PATH\n\ncd ..\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, skipping...\"\nfi\n\ntouch \"${DERIVED_FILE_DIR}/swiftlint.timestamp\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		10CDEF022EFDDEA1004F2FA4 /* Sources */ = {
