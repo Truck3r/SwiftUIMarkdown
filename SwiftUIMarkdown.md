@@ -263,7 +263,7 @@ struct StyledMarkdownView: View {
 
 SwiftUIMarkdown is built around a simple architecture:
 
-1. **Parsing**: Markdown text is parsed using Apple's [`swift-markdown](https://github.com/swiftlang/swift-markdown) library into an AST (Abstract Syntax Tree)
+1. **Parsing**: Markdown text is parsed using Apple's [`swift-markdown`](https://github.com/swiftlang/swift-markdown) library into an AST (Abstract Syntax Tree)
 2. **Rendering**: The `BlockView` recursively walks the AST and renders each node as a SwiftUI view
 3. **Styling**: Environment values (`MarkdownFonts`, `MarkdownStyle`, `MarkdownAccessibility`) flow down the view hierarchy to customize rendering
 
