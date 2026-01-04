@@ -9,5 +9,4 @@ import SwiftUI
 
 import Markdown
 
-protocol MarkdownBlockInlineContainer: MarkdownBlock, MarkdownInlineContainer, Markdown.BlockContainer {
-}
+protocol MarkdownBlockInlineContainer: MarkdownBlock, MarkdownInlineContainer {}

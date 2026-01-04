@@ -9,14 +9,13 @@ import SwiftUI
 
 import Markdown
 
-protocol MarkdownInlineContainer: Markdown.InlineContainer {
-}
+protocol MarkdownInlineContainer: Markdown.InlineContainer {}
 
 @MainActor
 extension MarkdownInlineContainer {
     func buildView() -> SwiftUI.Text {
         var text = SwiftUI.Text("")
-        children.forEach { child in
+        for child in children {
             if let leaf = child as? MarkdownInline {
                 text += leaf.view
             } else {

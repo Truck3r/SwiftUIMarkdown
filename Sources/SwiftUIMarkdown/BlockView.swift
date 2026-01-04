@@ -24,32 +24,37 @@ struct BlockView: View {
     var body: some View {
         VStack(spacing: 0) {
             ForEach(Array(mappedChildren.enumerated()), id: \.offset) { offset, child in
-                ZStack {
-                    if let blockContainer = child as? MarkdownBlockInlineContainer {
-                        VStack(spacing: 0) {
-                            render(blockInlineContainer: blockContainer, isLastElement: offset + 1 == mappedChildren.count)
-                        }
-                        .padding(if: isPreviousElementParagraph(index: offset)) {
-                            $0.padding(.top, 12.0)
-                        }
-                    } else if let inline = child as? MarkdownInline {
-                        inline.view.font(markdownFonts.body)
-                            .background(.red)
-                    } else if let thematicBreak = child as? Markdown.ThematicBreak {
-                        thematicBreak.view
-                    } else if let unorderedList = child as? Markdown.UnorderedList {
-                        unorderedList.view
-                    } else if let orderedList = child as? Markdown.OrderedList {
-                        orderedList.view
-                    } else if let image = child as? Markdown.Image {
-                        image.view
-                    } else {
-                        child.unsupported
-                            .padding(.vertical, 2.0)
-                            .border(Color(red: 1.0, green: 0.6, blue: 0.6))
-                    }
-                }.frame(maxWidth: .infinity, alignment: .leading)
+                renderChild(child, at: offset)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
+        }
+    }
+
+    @ViewBuilder
+    private func renderChild(_ child: Markup, at offset: Int) -> some View {
+        switch child {
+        case let blockContainer as MarkdownBlockInlineContainer:
+            VStack(spacing: 0) {
+                render(blockInlineContainer: blockContainer, isLastElement: offset + 1 == mappedChildren.count)
+            }
+            .if(isPreviousElementParagraph(index: offset)) {
+                $0.padding(.top, 12.0)
+            }
+        case let inline as MarkdownInline:
+            inline.view.font(markdownFonts.body)
+                .background(.red)
+        case let thematicBreak as Markdown.ThematicBreak:
+            thematicBreak.view
+        case let unorderedList as Markdown.UnorderedList:
+            unorderedList.view
+        case let orderedList as Markdown.OrderedList:
+            orderedList.view
+        case let image as Markdown.Image:
+            image.view
+        default:
+            child.unsupported
+                .padding(.vertical, 2.0)
+                .border(Color(red: 1.0, green: 0.6, blue: 0.6))
         }
     }
 
@@ -90,16 +95,5 @@ struct BlockView: View {
 
     private var mappedChildren: [Markup] {
         blockContainer.blockChildren.map(\.self)
-    }
-}
-
-extension View {
-    @ViewBuilder
-    func padding<Content: View>(if condition: Bool, transform: (Self) -> Content) -> some View {
-        if condition {
-            transform(self)
-        } else {
-            self
-        }
     }
 }

@@ -27,14 +27,11 @@ extension Markdown.Link: MarkdownInline {
     }
 
     private func makeLinkText() -> String {
-        debugPrint("Creating link: \(debugDescription())")
         var linkText = "[\(plainText)]"
         if let destination {
             let linkTitle = title == nil ? "" : " \"\(title ?? "")\""
             linkText += "(\(destination)\(linkTitle))"
         }
-
-        debugPrint(linkText)
         return linkText
     }
 }

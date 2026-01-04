@@ -1,0 +1,22 @@
+--swiftversion 5.9
+# format
+--allman true
+--indent 4
+# options
+--self remove # redundantSelf
+--importgrouping testable-last # sortedImports
+--trimwhitespace always
+--indentcase false
+--commas inline
+--ifdef indent #indent
+#--wraparguments before-first # wrapArguments
+#--wrapparameters before-first # wrapArguments
+--wrapcollections before-first
+--funcattributes prev-line # wrapAttributes
+--typeattributes prev-line # wrapAttributes
+# rules
+--rules linebreakAtEndOfFile,blankLinesBetweenScopes,blankLinesBetweenChainedFunctions,blankLinesAtStartOfScope,blankLinesAtEndOfScope,blankLinesAroundMark,blankLineAfterImports,consecutiveBlankLines,spaceAroundBraces,todos,anyObjectProtocol,redundantParens,redundantReturn,redundantSelf,sortImports,strongifiedSelf,trailingCommas,trailingSpace,wrapArguments,indent,wrapAttributes,void,fileHeader,consecutiveSpaces,spaceAroundComments,duplicateImports
+--disable trailingclosures
+--disable unusedArguments, redundantLet
+--exclude **/*_generated.swift
+--exclude **/*.grpc.swift

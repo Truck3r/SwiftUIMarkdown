@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftUIMarkdown
 
 struct MarkdownTestView: View {
-    public var body: some View {
+    var body: some View {
         List {
             ForEach(testData, id: \.0) { test in
                 NavigationLink(destination: InternalTextView(markdown: test.1).navigationTitle(test.0)) {

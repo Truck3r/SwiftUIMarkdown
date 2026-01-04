@@ -16,7 +16,6 @@ public struct MarkdownView: View {
 
     public init(_ markdownText: String) {
         document = Document(parsing: markdownText)
-        print(document.debugDescription())
     }
 
     public var body: some View {
@@ -25,48 +24,24 @@ public struct MarkdownView: View {
     }
 }
 
-extension SwiftUI.Text {
-    static func += (lhs: inout SwiftUI.Text, rhs: SwiftUI.Text) {
-        lhs = lhs + rhs
+#Preview {
+    ScrollView {
+        MarkdownView("Hello world!!")
+            .padding()
+            .environment(\.openURL, OpenURLAction { url in
+                print("Handled the URL: \(url)")
+                return .handled
+            })
     }
+    .markdownFonts(body: .title,
+                   heading1: .largeTitle,
+                   heading2: .title,
+                   heading3: .title2,
+                   heading4: .title3,
+                   heading5: .headline,
+                   heading6: .subheadline)
+    .markdownStyle(linkColor: .red,
+                   bullets: "-+*o")
+
+    // .environment(\.markdownAccessibilitySupport, MarkdownAccessibilitySupport(listBegin: { "list start" }, listCounter: { "\($0) of \($1)" }, listEnd: { "list end" }))
 }
-
-extension Markup {
-    var typeName: String {
-        guard let split = "\(self)".split(separator: "(").first else {
-            return "\(self)"
-        }
-        return "\(split)"
-    }
-
-    var unsupported: SwiftUI.Text {
-        SwiftUI.Text("[\(typeName)]").foregroundColor(.gray)
-    }
-}
-
-// MARK: SONARQUBE_IGNORE_BELOW
-
-#if DEBUG
-    @available(iOS 17.0, *)
-    #Preview {
-        ScrollView {
-            MarkdownView("Hello world!!")
-                .padding()
-                .environment(\.openURL, OpenURLAction { url in
-                    print("Handled the URL: \(url)")
-                    return .handled
-                })
-        }
-        .markdownFonts(body: .title,
-                       heading1: .largeTitle,
-                       heading2: .title,
-                       heading3: .title2,
-                       heading4: .title3,
-                       heading5: .headline,
-                       heading6: .subheadline)
-        .markdownStyle(linkColor: .red,
-                       bullets: "-+*o")
-
-        // .environment(\.markdownAccessibilitySupport, MarkdownAccessibilitySupport(listBegin: { "list start" }, listCounter: { "\($0) of \($1)" }, listEnd: { "list end" }))
-    }
-#endif

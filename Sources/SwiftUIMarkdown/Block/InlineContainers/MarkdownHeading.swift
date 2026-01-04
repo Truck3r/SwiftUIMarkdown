@@ -9,7 +9,6 @@ import SwiftUI
 
 import Markdown
 
-extension Heading: @retroactive BlockContainer {}
 @MainActor
 extension Markdown.Heading: MarkdownBlockInlineContainer {
     @ViewBuilder

@@ -10,8 +10,6 @@ import SwiftUI
 import Markdown
 
 @MainActor
-extension Paragraph: @retroactive BlockContainer {}
-@MainActor
 extension Markdown.Paragraph: MarkdownBlockInlineContainer {
     @ViewBuilder
     var view: some SwiftUI.View {

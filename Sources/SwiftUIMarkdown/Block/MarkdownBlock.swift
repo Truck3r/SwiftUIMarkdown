@@ -9,5 +9,4 @@ import SwiftUI
 
 import Markdown
 
-protocol MarkdownBlock: Markup {
-}
+protocol MarkdownBlock: Markup {}

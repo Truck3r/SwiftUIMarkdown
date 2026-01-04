@@ -21,8 +21,6 @@ extension Markdown.InlineCode: MarkdownInline {
             Text(code).monospaced()
         } else {
             Text(code).font(.system(.body, design: .monospaced))
-
         }
     }
 }
-
