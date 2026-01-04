@@ -1,0 +1,236 @@
+excluded:
+#  - "Dependencies/Tests/**/*"
+  
+disabled_rules: # rule identifiers to exclude from running
+  - nesting
+
+opt_in_rules: # some rules are only opt-in
+  - control_statement
+  - operator_usage_whitespace
+  - unneeded_parentheses_in_closure_argument
+
+  - function_body_length # SonarQube S103 (Lines should not be too long)
+  - file_length # SonarQube S104 (Files should not have too many lines)
+  - empty_count # SonarQube S108 (Nested blocks of code should not be left empty)
+  - trailing_newline # SonarQube S113 (Files should end with a newline)
+  - trailing_whitespace # SonarQube S1131 (Lines should not end with trailing whitespaces)
+  - todo 
+      # SonarQube S1135 (Track uses of "TODO" tags)
+      # SonarQube S1134 (Track uses of "FIXME" tags)
+  - identifier_name
+      # SonarQube S100 (Function names should comply with a naming convention)
+      # SonarQube S115 (Constant names should comply with a naming convention)
+      # SonarQube S116 (Field names should comply with a naming convention)
+      # SonarQube S117 (Local variable and function parameter names should comply with a naming convention)
+      # SonarQube S119 (Type parameter names should comply with a naming convention)
+      # SonarQube S2343 (Enumeration members should comply with a naming convention)
+  - function_parameter_count # SonarQube S107 (Too many parameters in a function)
+  - no_empty_block
+      # SonarQube S1186 (Functions and closures should not be empty)
+      # SonarQube S108 (Nested blocks of code should not be left empty)
+  - force_unwrapping # SonarQube S2966 (Optionals should not be force-unwrapped)
+
+# default rules
+# - unneeded_break_in_switch # SonarQube S2951 ("break" should be the only statement in a "case")
+# - force_try # SonarQube S3661 ("try!" should not be used)
+# - opening_brace # SonarQube S1105 (An open curly brace should be located at the end of a line)
+# - cyclomatic_complexity
+    # SonarQube S3087 (Closure expressions should not be nested too deeply)
+    # SonarQube S3376 (Cognitive Complexity of functions should not be too high)
+    # SonarQube S134 (Control flow statements "if", "for", "for in", "while", "do while" and "switch" should not be nested too deeply)
+# - force_cast # SonarQube 3630 (Force casts should not be used)
+# - operator_whitespace # SonarQube S2960 (Operators should be surrounded by whitespace in function definitions)
+
+# Unimplemented SonarQube rules, because it's either totally not possible or cannot be done good enough with a regex:
+# - S4186 ("IBInspectable" should be used correctly) -> We don't use Interface Builder.
+# - S2957 ("return" should be omitted from single-expression closures) -> Our SwiftFormat setup removes redundandt returns perfectly.
+# - S2963 ("self" should only be used when required) -> Our SwiftFormat setup removes redundandt self prefixes perfectly.
+# - S1301 ("switch" statements should have at least 3 "case" clauses).
+# - S1479 ("switch" statements should not have too many "case" clauses)
+# - S1109 (A close curly brace should be located at the beginning of a line)
+# - S1700 (A field should not duplicate the name of its containing class)
+# - S3923 (All branches in a conditional structure should not have exactly the same implementation)
+# - S1762 (All code should be reachable)
+# - S2961 (Backticks should not be used around symbol names)
+# - S1940 (Boolean checks should not be inverted)
+# - S5547 (Cipher algorithms should be robust)
+# - S2094 (Classes should not be empty)
+# - S4143 (Collection elements should not be replaced unconditionally)
+# - S3981 (Collection sizes comparisons should make sense)
+# - S2523 (Comments should not be nested)
+# - S1133 (Deprecated code should be removed)
+# - S2108 (Fields and variables that are never updated should be constant) -> Already warned directly in Xcode by the Swift compiler.
+# - S2309 (Files should not be empty)
+# - S1244 (Floating point numbers should not be tested for equality)
+# - S2968 (Function type parameters should come at the end of the parameter list)
+# - S4144 (Functions should not have identical implementations)
+# - S3110 (Infix operators that end with "\u003d" should update their left operands)
+# - S3626 (Jump statements should not be redundant)
+# - S1117 (Local variables should not have the same name as fields or "enum" cases)
+# - S1751 (Loops with at most one iteration should be refactored)
+# - S1066 (Mergeable "if" statements should be combined)
+# - S1845 (Methods and field names should not be the same or differ only by capitalization)
+# - S122 (Statements should be on separate lines)
+# - S1659 (Multiple variables should not be declared on the same line)
+# - S3083 (Precedence and associativity of standard operators should not be changed)
+# - S1110 (Redundant pairs of parentheses should be removed)
+# - S1862 (Related "if/else if" statements and "cases" in a "switch" should not have the same condition)
+# - S2201 (Return values from functions without side effects should not be ignored)
+# - S125 (Sections of code should not be commented out)
+# - S2760 (Sequential tests should not check the same condition)
+# - S1192 (String literals should not be duplicated)
+# - S3358 (Ternary operators should not be nested)
+# - S2260 (Track parsing failures)
+# - S1871 (Two branches in a conditional structure should not have exactly the same implementation)
+# - S1144 (Unused "private" functions should be removed) -> Already warned directly by Swift compiler.
+# - S1854 (Unused assignments should be removed) -> Partially handled by Swift compiler.
+# - S1172 (Unused function parameters should be removed)
+# - S1065 (Unused labels should be removed)
+# - S1481 (Unused local variables should be removed) -> Already warned directly by Swift compiler.
+# - S1313 (Using hardcoded IP addresses is security-sensitive) -> Out of scope.
+
+function_body_length:
+  warning: 60
+  error: 100
+
+type_body_length:
+  - 300 # warning
+  - 400 # error
+
+# or they can set both explicitly
+file_length:
+  warning: 500
+  error: 800
+
+
+line_length:
+  warning: 250
+  error: 350
+
+large_tuple: # warn user when using 3 values in tuple, give error if there are 4
+   - 3
+   - 4
+
+# SonarQube S107 (Functions should not have too many parameters)
+function_parameter_count:
+  warning: 7
+  error: 10
+
+# SonarQube S1642 ("struct" names should comply with a naming convention)
+# SonarQube S101 (Class names should comply with a naming convention)
+# SonarQube S3242 (Enumeration types should comply with a naming convention)
+# SonarQube S114 (Protocol names should comply with a naming convention)
+type_name:
+  min_length: 3
+  max_length:
+    warning: 40
+    error: 50
+  excluded: iPhone
+
+custom_rules:
+  no_tabs:
+    name: "No Tabs Allowed"
+    regex: "\t"
+    message: "Use spaces instead of tabs."
+    severity: warning # SonarQube S105 (Tab characters should not be used)
+
+  remove_useless_if:
+    name: "Remove if true/false Blocks"
+    regex: "if (true|false) ?\\{"
+    message: "Remove always true/false if statements."
+    severity: warning # SonarQube S1145 (Useless `if true` and `if false`)
+
+  no_optional_void_return:
+    name: "No Optional Void Return"
+    regex: '\(\S*\)\s*->\s*Void\?'
+    message: "Returning Void? in function signature is redundant and should be avoided."
+    severity: error
+
+# NOTE: Custom rules made to match SQ equivalents, should be reconsidered if they start giving false positives (og don't flag what SQ flags)
+
+  # SonarQube S2737 ("catch" clauses should do more than rethrow)
+  catch_only_rethrows:
+    name: "SQ2737: Catch should do more than rethrow"
+    regex: '\}\s*catch(?:\s+let\s+(\w+)(?:\s+as\s+\w+)?)?\s*\{\s*throw\s+\1?error\s*\}'
+    message: "Avoid catch blocks that only rethrow the error."
+    severity: warning
+
+  # SonarQube S1125 (Boolean literals should not be redundant)
+  redundant_boolean_literal:
+    name: "SQ1125: Redundant Boolean Literal"
+    regex: '(!=|==)\s*(trues|falses)'
+    message: "Avoid redundant boolean comparisons. Use the boolean value directly or negate it."
+    severity: warning
+
+  # SonarQube S4173 (Filter conditions should be used as predicates to "first")
+  avoid_filter_then_first:
+    name: "SQ4173: Avoid filter().first"
+    regex: '\.filter\s*\{[^}]*\}\s*\.first'
+    message: "Use `.first(where:)` instead of `.filter { }.first` for better performance."
+    severity: warning
+
+  # SonarQube S2068 (Hard-coded credentials are security-sensitive)
+  hardcoded_credentials:
+    name: "SQ2068: Hardcoded Credentials"
+    regex: '\b(password|passwd|pwd|passphrase|apiKey|secret|token)\b\s*=\s*".+"'
+    message: "Avoid hardcoding credentials in source code."
+    severity: error
+
+  # SonarQube S1764 (Identical expressions should not be used on both sides of a binary operator)
+  identical_expressions_comparison:
+    name: "SQ1764: Identical Expressions in Comparison"
+    regex: '\b(\w.\[\]*)\s*(==|!=|<=|>=|<|>)\s*\1\b'
+    message: "Avoid comparing identical expressions — this is likely a logic error."
+    severity: warning
+
+  # SonarQube S2967 (Implicitly unwrapped optionals should not be used)
+  no_implicitly_unwrapped_optionals:
+    name: "SQ2967: No Implicitly Unwrapped Optionals"
+    regex: '\b(var|let)\s+\w+\s*:\s*[\w<>\[\]:]+\s*!'
+    message: "Avoid using implicitly unwrapped optionals (`!`). Use regular optionals (`?`) and safely unwrap them."
+    severity: error
+
+  # SonarQube S2197 (Modulus results should not be checked for direct equality)
+  avoid_modulo_equality:
+    name: "SQ2197: Avoid Equality Check on Modulo Result"
+    regex: '\b\w+\s*%\s*\d+\s*(==|!=)\s*\d+'
+    message: "Avoid checking modulus results for direct equality. Consider using `!= 0` or handling negative values explicitly."
+    severity: warning
+
+  # SonarQube S4233 (Parentheses should be omitted when trailing closure is the only argument)
+  no_parentheses_for_trailing_closure:
+    name: "No parentheses for trailing closure"
+    regex: "\\w+\\s*\\(\\s*\\{"
+    message: "Omit parentheses when using a trailing closure as the only argument."
+    severity: warning
+
+  # SonarQube S2959 (Statements should not end with semicolons)
+  semicolon_at_end:
+    name: "SQ2959: Unnecessary Semicolon"
+    regex: ';\\s*$'
+    message: "Avoid ending statements with semicolons in Swift."
+    severity: warning
+
+  # SonarQube S2635 (Trailing closures should not begin on new lines)
+  no_newline_before_trailing_closure:
+    name: "No Newline Before Trailing Closure"
+    regex: '\)\s*\n\s*\{'
+    message: "Trailing closures should not begin on a new line."
+    severity: warning
+
+  # SonarQube S1145 (Useless "if true {...}" and "if false {...}" blocks should be removed)
+  constant_boolean_condition:
+    name: "SQ1145: Constant Boolean Condition"
+    regex: '^\s*if\s+(true|false)\s*\{'
+    message: "Avoid using constant boolean conditions like 'if true' or 'if false'."
+    severity: warning
+
+  # SonarQube S4790 (Using weak hashing algorithms is security-sensitive)
+  weak_hashing:
+    name: "SQ4790: Weak Hashing Algorithm"
+    regex: '\b(CC_MD5|CC_SHA1|Insecure\.MD5|Insecure\.SHA1)\b'
+    message: "Avoid using weak hashing algorithms like MD5 or SHA-1."
+    severity: error
+
+analyzer_rules:
+  - unused_declaration # SonarQube S1144 (Unused private functions)

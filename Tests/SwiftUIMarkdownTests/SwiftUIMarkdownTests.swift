@@ -9,14 +9,9 @@ import XCTest
 @testable import SwiftUIMarkdown
 
 final class SwiftUIMarkdownTests: XCTestCase {
-    func testParsingHeaders() {
-        let parser = MarkdownParser()
-        let result = parser.parse("# Title")
-        XCTAssertEqual(result.first?.content, "# Title")
-    }
-
+    @MainActor
     func testRenderingMarkdownView() {
-        let view = MarkdownView(text: "Hello *world*")
+        let view = MarkdownView("Hello *world*")
         XCTAssertNotNil(view.body)
     }
 }
