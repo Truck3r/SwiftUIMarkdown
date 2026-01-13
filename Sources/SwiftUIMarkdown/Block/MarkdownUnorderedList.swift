@@ -97,6 +97,8 @@ extension Markdown.UnorderedList: MarkdownBlock {
 /// - Providing accessibility labels for list navigation
 /// - Announcing list boundaries to screen readers
 private struct UnorderedListView: View {
+    @Environment(\.markdownDebug) var debugEnabled: Bool
+
     /// The current Markdown style from the environment.
     ///
     /// Used to retrieve the bullet characters for list rendering. The first
@@ -138,11 +140,17 @@ private struct UnorderedListView: View {
                 }
                 .padding(.bottom, 4.0)
             }
-            Color.clear // announce end of list
-                .frame(width: 0.1, height: 0.1)
-                .accessibilityElement()
-                .accessibilityLabel(markdownAccessibility.listEnd())
-                .accessibilityHidden(false)
+            if debugEnabled {
+                Color.red // announce end of list
+                    .frame(width: 3.0, height: 3.0)
+                    .accessibilityElement()
+                    .accessibilityLabel(markdownAccessibility.listEnd())
+            } else {
+                Color.clear // announce end of list
+                    .frame(width: 0.1, height: 0.1)
+                    .accessibilityElement()
+                    .accessibilityLabel(markdownAccessibility.listEnd())
+            }
         }
     }
 

@@ -96,6 +96,8 @@ extension Markdown.OrderedList: MarkdownBlock {
 /// - Providing accessibility labels for list navigation
 /// - Announcing list boundaries to screen readers
 private struct OrderedListView: View {
+    @Environment(\.markdownDebug) var debugEnabled: Bool
+
     /// The current Markdown style from the environment.
     @Environment(\.markdownStyle) private var markdownStyle
 
@@ -137,11 +139,17 @@ private struct OrderedListView: View {
                 .padding(.leading, 8.0)
                 .padding(.bottom, 4.0)
             }
-            Color.clear // announce end of list
-                .frame(width: 0.1, height: 0.1)
-                .accessibilityElement()
-                .accessibilityLabel(markdownAccessibility.listEnd())
-                .accessibilityHidden(false)
+            if debugEnabled {
+                Color.red // announce end of list
+                    .frame(width: 3.0, height: 3.0)
+                    .accessibilityElement()
+                    .accessibilityLabel(markdownAccessibility.listEnd())
+            } else {
+                Color.clear // announce end of list
+                    .frame(width: 0.1, height: 0.1)
+                    .accessibilityElement()
+                    .accessibilityLabel(markdownAccessibility.listEnd())
+            }
         }
     }
 

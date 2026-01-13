@@ -95,6 +95,9 @@ public struct MarkdownView: View {
     /// ```
     public init(_ markdownText: String) {
         document = Document(parsing: markdownText)
+        if debugEnabled {
+            print(document.debugDescription())
+        }
     }
 
     public var body: some View {

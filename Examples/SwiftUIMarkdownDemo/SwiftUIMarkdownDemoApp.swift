@@ -13,8 +13,12 @@ import SwiftUIMarkdown
 struct SwiftUIMarkdownDemoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.markdownAccessibility, MarkdownAccessibility(listBegin: { "list start" }, listCounter: { "\($0) of \($1)" }, listEnd: { "list end" }))
+            VStack {
+                ContentView()
+            }
+            .environment(\.markdownAccessibility, MarkdownAccessibility(listBegin: { "list start" }, listCounter: { "\($0) of \($1)" }, listEnd: { "list end" }))
+            .environment(\.markdownDebug, true)
+
         }
     }
 }
