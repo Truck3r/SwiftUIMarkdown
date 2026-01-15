@@ -1,10 +1,3 @@
-//
-//  MarkdownView.swift
-//  SwiftUIMarkdown
-//
-//  Created by Sune Riedel on 31/12/2025.
-//
-
 import SwiftUI
 
 import Markdown
@@ -93,9 +86,9 @@ public struct MarkdownView: View {
     ///
     /// MarkdownView(markdown)
     /// ```
-    public init(_ markdownText: String) {
+    public init(_ markdownText: String, debug: Bool = false) {
         document = Document(parsing: markdownText)
-        if debugEnabled {
+        if debug {
             print(document.debugDescription())
         }
     }
@@ -115,7 +108,8 @@ public struct MarkdownView: View {
                 return .handled
             })
     }
-    .markdownFonts(body: .title,
+    .environment(\.markdownDebug, true)
+    .markdownFonts(body: .body,
                    heading1: .largeTitle,
                    heading2: .title,
                    heading3: .title2,

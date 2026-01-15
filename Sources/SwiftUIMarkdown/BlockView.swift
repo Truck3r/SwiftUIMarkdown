@@ -66,8 +66,10 @@ struct BlockView: View {
             ForEach(Array(mappedChildren.enumerated()), id: \.offset) { offset, child in
                 renderChild(child, at: offset)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     /// Renders a single child markup element at the specified offset.

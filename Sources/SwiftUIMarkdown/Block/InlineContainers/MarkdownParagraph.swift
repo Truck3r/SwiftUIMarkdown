@@ -46,6 +46,7 @@ private struct ParagraphView: View {
 
     var body: some View {
         content()
+            .lineLimit(nil)
             .font(markdownFonts.body)
             .lineSpacing(2)
             .frame(maxWidth: .infinity, alignment: .leading)

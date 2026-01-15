@@ -123,7 +123,7 @@ private struct OrderedListView: View {
     init(list: Markdown.OrderedList) {
         self.list = list
         let maxnumber = Int(list.startIndex) + list.listItems.underestimatedCount
-        _indent = .init(wrappedValue: 5.0 + 12.0 * CGFloat(String(maxnumber).count), relativeTo: .body)
+        _indent = .init(wrappedValue: 6.0 + 12.0 * CGFloat(String(maxnumber).count), relativeTo: .body)
     }
 
     var body: some View {
@@ -135,6 +135,7 @@ private struct OrderedListView: View {
                     BlockView(blockContainer: item,
                               accessibilityListElementQualifier: markdownAccessibility.listCounter(offset + 1, elementCount))
                         .markdownStyle(bullets: String(markdownStyle.bullets.dropFirst()))
+                        .layoutPriority(1)
                 }
                 .padding(.leading, 8.0)
                 .padding(.bottom, 4.0)
